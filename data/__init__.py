@@ -4,6 +4,7 @@ from pygame import mixer
 import characters
 import utils
 
+
 # Initialize the pygame
 pygame.init()
 
@@ -40,11 +41,25 @@ bulletImg = pygame.image.load('../resources/images/characters/bullet.png').conve
 bullet_sound = mixer.Sound('../resources/sounds/laser.wav')
 bullet = characters.Bullet(-200,490,bulletImg,bullet_sound,"ready")
 
+# Start Title
+title_font = 'FastHand.ttf'
+title = utils.Text_Font(78,100,80,(0,191,255),title_font)
+
 # Score
-score = utils.Text_Font(10,10,32,(255,255,255))
+score_font = 'SpaceAdventure.ttf'
+score = utils.Text_Font(10,10,22,(135,206,235),score_font)
+
+# High Score
+high_score_font = 'SpaceAdventure.ttf'
+high_score = utils.Text_Font(195,400,50,(0,191,255),high_score_font)
+
+# Load High Score
+high_score.value = utils.load_high_score()
 
 # Game Over
-game_over = utils.Text_Font(200,150,64,(255,255,255))
+game_over_font = 'FastHand.ttf'
+game_over = utils.Text_Font(178,100,80,(0,191,255),game_over_font)
+
 
 # Buttons
 play_buttonImgs = [pygame.image.load('../resources/images/buttons/play.png').convert_alpha(), pygame.image.load('../resources/images/buttons/play_hover.png').convert_alpha()]
@@ -74,3 +89,4 @@ nosound_button = utils.Button(754,10,nosound_buttonImgs[0],nosound_buttonImgs[1]
 # Delta time
 clock = pygame.time.Clock() 
 TARGET_FPS = 60 
+

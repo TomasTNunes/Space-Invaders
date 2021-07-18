@@ -1,5 +1,4 @@
 # MAIN
-import pygame
 from __init__ import *
 
 
@@ -88,6 +87,8 @@ while running:
 
 		play_button.draw(screen)
 		exit_button.draw(screen)
+		title.show(screen,'SPACE INVADERS')
+		high_score.show(screen,'HIGH SCORE: ' + str(high_score.value))
 
 	elif game_status is 'play': 
 
@@ -100,8 +101,8 @@ while running:
 			# Game Over
 			if enemy.Y > 440:
 				utils.stop_enemies(enemies)
-				game_over.show(screen,'GAME OVER')
 				game_status = 'stop'
+				utils.check_save_high_score(score.value,high_score)
 				break
 			enemy.move_enemy(dt)
 
@@ -141,6 +142,7 @@ while running:
 		exit_button.draw(screen)
 		game_over.show(screen,'GAME OVER')
 		score.show(screen,'SCORE: ' + str(score.value))
+		high_score.show(screen,'HIGH SCORE: ' + str(high_score.value))
 	
 	elif game_status is 'pause':
 
@@ -158,6 +160,8 @@ while running:
 		exit_button.draw(screen)
 		resume_button.draw(screen)
 		score.show(screen,'SCORE: ' + str(score.value))
+		title.show(screen,'SPACE INVADERS')
+		high_score.show(screen,'HIGH SCORE: ' + str(high_score.value))
 		if game_status is 'play':
 			restart_button.rect.x = 167
 			exit_button.rect.x = 483
@@ -167,3 +171,4 @@ while running:
 
 	# Update screen
 	pygame.display.update()
+

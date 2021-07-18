@@ -1,7 +1,9 @@
 # UTILS
 import pygame
 import math
+import pickle
 from pygame import mixer
+
 
 class Button():
 	def __init__(self,x,y,image,hover,scale):
@@ -37,8 +39,8 @@ class Button():
 
 
 class Text_Font():
-	def __init__(self,x,y,size,RGB):
-		self.font = pygame.font.Font('../resources/fonts/freesansbold.ttf',size)
+	def __init__(self,x,y,size,RGB,font):
+		self.font = pygame.font.Font(f'../resources/fonts/{font}',size)
 		self.X = x
 		self.Y = y
 		self.value = 0
@@ -88,3 +90,19 @@ def mute_unmute(sound,enemies,bullet):
 		bullet.sound.set_volume(0.1)
 		for enemy in enemies:
 			enemy.sound.set_volume(0.05)
+
+
+def load_high_score():
+	try:
+		with open('high_score.pkl', 'rb') as pickle_in:
+			high_score = pickle.load(pickle_in)
+	except FileNotFoundError:
+		high_score = 0
+	return high_score
+
+
+def check_save_high_score(score,high_score):
+	if score > high_score.value:
+		high_score.value = score
+		with open('high_score.pkl', 'wb') as pickle_out:
+				pickle.dump(score, pickle_out)
