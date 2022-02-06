@@ -1,4 +1,4 @@
 __pycache__/
 
 # Pickle Files in data
-data/*.pkl
+src/*.pkl
