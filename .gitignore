@@ -2,3 +2,6 @@ __pycache__/
 
 # Pickle Files in data
 src/*.pkl
+
+resources\images\characters\enemy_amongus.png
+resources\images\characters\enemy_areias.png
